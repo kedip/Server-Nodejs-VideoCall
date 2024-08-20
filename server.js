@@ -58,7 +58,8 @@ io.on("connection", (socket) => {
   });
 
   socket.on("endCall", () => {
-    socket.broadcast.emit("callEnded");
+    io.to(data.to).emit('call-ended');     
+	io.to(data.from).emit('call-ended');
   });
 });
 
