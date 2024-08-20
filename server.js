@@ -57,6 +57,10 @@ io.on("connection", (socket) => {
     io.to(data.to).emit("callAccepted", data.signal);
   });
 
+  socket.on("hangup", () => {    
+	socket.broadcast.emit("callEnded");  
+});
+
   socket.on("endCall", () => {
     io.to(data.to).emit('call-ended');     
 	io.to(data.from).emit('call-ended');
