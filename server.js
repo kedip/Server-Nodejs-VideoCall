@@ -53,13 +53,8 @@ io.on("connection", (socket) => {
     });
   });
 
-  // Handle call acceptance
   socket.on("answerCall", (data) => {
-    io.to(data.to).emit("callAccepted", {
-      signal: data.signal,
-      from: data.from, // Include the caller's ID
-      name: data.name // Include the caller's name
-    });
+    io.to(data.to).emit("callAccepted", data.signal);
   });
 
   socket.on("endCall", (data) => {
